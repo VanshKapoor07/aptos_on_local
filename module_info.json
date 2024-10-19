@@ -1,0 +1,125 @@
+{
+  "moduleAddress": "0x61dbdabc048aa3b85609e916624f46597ff9ada018a57824cd9eb5dcebe931f5",
+  "moduleName": "c1",
+  "availableFunctions": [
+    {
+      "name": "0",
+      "visibility": "public",
+      "is_entry": false,
+      "generic_type_params": 0,
+      "parameters": [
+        "address"
+      ]
+    },
+    {
+      "name": "1",
+      "visibility": "public",
+      "is_entry": false,
+      "generic_type_params": 0,
+      "parameters": [
+        "address",
+        "address"
+      ]
+    },
+    {
+      "name": "2",
+      "visibility": "public",
+      "is_entry": true,
+      "generic_type_params": 0,
+      "parameters": [
+        "&signer",
+        "u64"
+      ]
+    },
+    {
+      "name": "3",
+      "visibility": "public",
+      "is_entry": true,
+      "generic_type_params": 0,
+      "parameters": [
+        "&signer",
+        "address",
+        "u64"
+      ]
+    },
+    {
+      "name": "4",
+      "visibility": "public",
+      "is_entry": false,
+      "generic_type_params": 0,
+      "parameters": [
+        "address"
+      ]
+    },
+    {
+      "name": "5",
+      "visibility": "public",
+      "is_entry": true,
+      "generic_type_params": 0,
+      "parameters": [
+        "&signer",
+        "u64"
+      ]
+    },
+    {
+      "name": "6",
+      "visibility": "public",
+      "is_entry": true,
+      "generic_type_params": 0,
+      "parameters": [
+        "&signer"
+      ]
+    }
+  ],
+  "resourceStructures": [
+    {
+      "name": "InvestmentData",
+      "fields": [
+        {
+          "name": "version",
+          "type": "u64"
+        },
+        {
+          "name": "startup_address",
+          "type": "address"
+        },
+        {
+          "name": "target_amount",
+          "type": "u64"
+        },
+        {
+          "name": "total_investment",
+          "type": "u64"
+        },
+        {
+          "name": "is_active",
+          "type": "bool"
+        },
+        {
+          "name": "investments",
+          "type": "0x1::table::Table<address, u64>"
+        },
+        {
+          "name": "investors",
+          "type": "vector<address>"
+        }
+      ]
+    }
+  ],
+  "moduleResources": [
+    {
+      "type": "0x61dbdabc048aa3b85609e916624f46597ff9ada018a57824cd9eb5dcebe931f5::c1::InvestmentData",
+      "data": {
+        "investments": {
+          "handle": "0x86d72cb5b6983b5eedd9587471cad300fd5a2f632de0277015973d8cadcedcc4"
+        },
+        "investors": [],
+        "is_active": true,
+        "startup_address": "0x61dbdabc048aa3b85609e916624f46597ff9ada018a57824cd9eb5dcebe931f5",
+        "target_amount": "500000000",
+        "total_investment": "0",
+        "version": "1"
+      }
+    }
+  ]
+}
