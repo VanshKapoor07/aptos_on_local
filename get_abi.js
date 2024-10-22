@@ -66,6 +66,7 @@ async function getModuleInfo(moduleAddress, moduleName) {
             availableFunctions: functionsInfo,
             resourceStructures: structsInfo,
             moduleResources
+            
         };
 
         // Save the data as a JSON file
