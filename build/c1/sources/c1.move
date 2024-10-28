@@ -1,4 +1,4 @@
-address 0x61dbdabc048aa3b85609e916624f46597ff9ada018a57824cd9eb5dcebe931f5 {
+address 0x61dbdabc048aa3b85609e916624f46597ff9ada018a57824cd9eb5dcebe931f5{
     module c1 {
 
         use std::signer;
@@ -12,7 +12,7 @@ address 0x61dbdabc048aa3b85609e916624f46597ff9ada018a57824cd9eb5dcebe931f5 {
         const E_ALREADY_INITIALIZED: u64 = 2;
         const E_INSUFFICIENT_BALANCE: u64 = 3;
         const E_TARGET_NOT_REACHED: u64 = 4;
-        const E_NOT_AUTHORIZED: u64 = 5;
+        const E_NOT_AUTHORIZED: u64 = 5; 
 
         struct InvestmentData has key {
             version: u64,
