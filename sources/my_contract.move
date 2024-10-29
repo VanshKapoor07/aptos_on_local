@@ -1,5 +1,6 @@
 module hello_world::message {
     use std::string;
+    use std::signer;
     use aptos_framework::account;
     use aptos_framework::event;
     
@@ -14,7 +15,7 @@ module hello_world::message {
     }
 
     public entry fun say_hello(account: &signer) {
-        let addr = account::get_signer_capability_address(account);
+        let addr = signer::address_of(account);
         
         if (!exists<MessageHolder>(addr)) {
             let holder = MessageHolder {
