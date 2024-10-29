@@ -7,7 +7,7 @@ async function getLatestModuleAddress(accountAddress, moduleName) {
     try {
         // Get account's transactions, most recent first
         const transactions = await client.getAccountTransactions(accountAddress, {
-            limit: 100  // Adjust this number based on how far back you want to look
+            limit: 100
         });
 
         // Find the most recent successful module publishing transaction
@@ -21,7 +21,6 @@ async function getLatestModuleAddress(accountAddress, moduleName) {
             throw new Error('No recent module publishing transaction found');
         }
 
-        // The module will be at the same address as the publisher
         return accountAddress;
     } catch (error) {
         console.error("Error fetching latest module address:", error);
@@ -34,6 +33,9 @@ async function getModuleInfo(accountAddress, moduleName) {
         // First, get the latest module address
         const moduleAddress = await getLatestModuleAddress(accountAddress, moduleName);
         console.log('Found module at address:', moduleAddress);
+
+        // Add delay to ensure transaction is processed
+        await new Promise(resolve => setTimeout(resolve, 5000));
 
         // 1. Get module's address
         console.log('1. Module Address:', moduleAddress);
@@ -61,40 +63,11 @@ async function getModuleInfo(accountAddress, moduleName) {
             });
         }
 
-        // 4. Get structure of resources defined in the module
-        const structsInfo = [];
-        console.log('4. Resource Structures:');
-        for (const struct of moduleData.abi.structs) {
-            console.log(`   - ${struct.name}`);
-            console.log('     Fields:');
-            const fieldsInfo = struct.fields.map(field => ({
-                name: field.name,
-                type: field.type
-            }));
-            structsInfo.push({
-                name: struct.name,
-                fields: fieldsInfo
-            });
-            for (const field of struct.fields) {
-                console.log(`       ${field.name}: ${field.type}`);
-            }
-        }
-
-        // 5. Get account resources
-        const accountResources = await client.getAccountResources(moduleAddress);
-        const moduleResources = accountResources.filter((resource) =>
-            resource.type.includes(moduleName)
-        );
-        console.log('5. Module Resources:');
-        console.log(JSON.stringify(moduleResources, null, 2));
-
-        // Prepare and save output
+        // Save output
         const outputData = {
             moduleAddress,
             moduleName,
             availableFunctions: functionsInfo,
-            resourceStructures: structsInfo,
-            moduleResources,
             timestamp: new Date().toISOString()
         };
 
@@ -108,14 +81,11 @@ async function getModuleInfo(accountAddress, moduleName) {
     }
 }
 
-// Function to get account address from local config
 async function getAccountAddressFromConfig() {
     try {
-        // Read the .aptos/config.yaml file from the current directory
         const configPath = './.aptos/config.yaml';
         if (fs.existsSync(configPath)) {
             const config = fs.readFileSync(configPath, 'utf8');
-            // Simple YAML parsing for the account address
             const match = config.match(/account:\s*([a-fA-F0-9x]+)/);
             if (match && match[1]) {
                 return match[1];
@@ -128,12 +98,11 @@ async function getAccountAddressFromConfig() {
     }
 }
 
-// Usage
 async function main() {
     try {
-        // Get the account address from config
         const accountAddress = await getAccountAddressFromConfig();
-        const moduleName = 'message'; // Replace with your module name
+        // Updated module name to match the Move contract
+        const moduleName = 'hello_world';  // Changed from 'message' to 'hello_world'
 
         console.log('Using account address:', accountAddress);
         await getModuleInfo(accountAddress, moduleName);
