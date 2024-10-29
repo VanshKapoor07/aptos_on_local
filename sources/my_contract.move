@@ -14,7 +14,7 @@ address 0x61dbdabc048aa3b85609e916624f46597ff9ada018a57824cd9eb5dcebe931f5{
             from_message: string::String,
             to_message: string::String,
         }
-
+        #[view]
         public entry fun say_hello(account: &signer) {
             let addr = signer::address_of(account);
             
