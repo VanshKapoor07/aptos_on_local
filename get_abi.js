@@ -1,46 +1,14 @@
 const { AptosClient } = require('aptos');
-const fs = require('fs');
+const fs = require('fs'); // Import the fs module
 
 const client = new AptosClient('https://fullnode.devnet.aptoslabs.com');
 
-async function getLatestModuleAddress(accountAddress, moduleName) {
+async function getModuleInfo(moduleAddress, moduleName) {
     try {
-        // Get account's transactions, most recent first
-        const transactions = await client.getAccountTransactions(accountAddress, {
-            limit: 100
-        });
-
-        // Find the most recent successful module publishing transaction
-        const publishTx = transactions.find(tx => 
-            tx.type === 'user_transaction' &&
-            tx.success &&
-            tx.payload?.function === '0x1::code::publish_package_txn'
-        );
-
-        if (!publishTx) {
-            throw new Error('No recent module publishing transaction found');
-        }
-
-        return accountAddress;
-    } catch (error) {
-        console.error("Error fetching latest module address:", error);
-        throw error;
-    }
-}
-
-async function getModuleInfo(accountAddress, moduleName) {
-    try {
-        // First, get the latest module address
-        const moduleAddress = await getLatestModuleAddress(accountAddress, moduleName);
-        console.log('Found module at address:', moduleAddress);
-
-        // Add delay to ensure transaction is processed
-        await new Promise(resolve => setTimeout(resolve, 5000));
-
-        // 1. Get module's address
+        // 1. Get module's address (already known)
         console.log('1. Module Address:', moduleAddress);
 
-        // 2. Get module's name
+        // 2. Get module's name (already known)
         console.log('2. Module Name:', moduleName);
 
         // 3. Get functions available in the module
@@ -54,6 +22,7 @@ async function getModuleInfo(accountAddress, moduleName) {
             console.log(`     Generic Type Parameters: ${funcData.generic_type_params.length}`);
             console.log(`     Parameters: ${funcData.params}`);
 
+            // Store function info for JSON output
             functionsInfo.push({
                 name: funcName,
                 visibility: funcData.visibility,
@@ -63,52 +32,54 @@ async function getModuleInfo(accountAddress, moduleName) {
             });
         }
 
-        // Save output
+        // 4. Get structure of resources defined in the module
+        const structsInfo = [];
+        console.log('4. Resource Structures:');
+        for (const struct of moduleData.abi.structs) {
+            console.log(`   - ${struct.name}`);
+            console.log('     Fields:');
+            const fieldsInfo = struct.fields.map(field => ({
+                name: field.name,
+                type: field.type
+            }));
+            structsInfo.push({
+                name: struct.name,
+                fields: fieldsInfo
+            });
+            for (const field of struct.fields) {
+                console.log(`       ${field.name}: ${field.type}`);
+            }
+        }
+
+        // 5. Get account resources (as in your original code)
+        const accountResources = await client.getAccountResources(moduleAddress);
+        const moduleResources = accountResources.filter((resource) =>
+            resource.type.includes(moduleName)
+        );
+        console.log('5. Module Resources:');
+        console.log(JSON.stringify(moduleResources, null, 2));
+
+        // Prepare the data to save as JSON
         const outputData = {
             moduleAddress,
             moduleName,
             availableFunctions: functionsInfo,
-            timestamp: new Date().toISOString()
+            resourceStructures: structsInfo,
+            moduleResources
+            
         };
 
+        // Save the data as a JSON file
         const outputFilePath = './module_info.json';
         fs.writeFileSync(outputFilePath, JSON.stringify(outputData, null, 2), 'utf-8');
-        console.log(`Module information saved to ${outputFilePath}`);
+        console.log("Module information saved to ${outputFilePath}");
 
     } catch (error) {
         console.error("Error fetching module info:", error);
-        throw error;
     }
 }
 
-async function getAccountAddressFromConfig() {
-    try {
-        const configPath = './.aptos/config.yaml';
-        if (fs.existsSync(configPath)) {
-            const config = fs.readFileSync(configPath, 'utf8');
-            const match = config.match(/account:\s*([a-fA-F0-9x]+)/);
-            if (match && match[1]) {
-                return match[1];
-            }
-        }
-        throw new Error('Account address not found in config');
-    } catch (error) {
-        console.error("Error reading account address from config:", error);
-        throw error;
-    }
-}
+const moduleAddress = '0x61dbdabc048aa3b85609e916624f46597ff9ada018a57824cd9eb5dcebe931f5'; // Replace with your contract address
+const moduleName = 'c1'; // Replace with your module name
 
-async function main() {
-    try {
-        const accountAddress = await getAccountAddressFromConfig();
-        // Updated module name to match the Move contract
-        const moduleName = 'hello_world';  // Changed from 'message' to 'hello_world'
-
-        console.log('Using account address:', accountAddress);
-        await getModuleInfo(accountAddress, moduleName);
-    } catch (error) {
-        console.error("Main execution error:", error);
-    }
-}
-
-main();
+getModuleInfo(moduleAddress, moduleName);
