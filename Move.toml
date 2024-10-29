@@ -1,9 +1,10 @@
 [package]
-name = "c1"
-version = "18.0.0"
+name = "hello_world"
+version = "0.0.1"
+upgrade_policy = "compatible"
 
 [addresses]
-c1 = "0x61dbdabc048aa3b85609e916624f46597ff9ada018a57824cd9eb5dcebe931f5"
+hello_world = "_"
 
 [dependencies]
-AptosFramework = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-framework/", rev = "918b643c98f81b8b2b3dd3a597329210b35c30b3" }
+AptosFramework = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-framework/", rev = "mainnet" }
