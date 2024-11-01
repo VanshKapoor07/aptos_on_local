@@ -1,7 +1,7 @@
 const { AptosClient } = require('aptos');
 const fs = require('fs'); // Import the fs module
 
-const client = new AptosClient('https://fullnode.devnet.aptoslabs.com');
+const client = new AptosClient('https://fullnode.testnet.aptoslabs.com');
 
 async function getModuleInfo(moduleAddress, moduleName) {
     try {
@@ -80,6 +80,6 @@ async function getModuleInfo(moduleAddress, moduleName) {
 }
 
 const moduleAddress = '0x4d13cf1bee31d1a31d0f783c48ac3979cc643fd8b169fd735ee57160a9c717a7'; // Replace with your contract address
-const moduleName = 'c1'; // Replace with your module name
+const moduleName = 'c'; // Replace with your module name
 
 getModuleInfo(moduleAddress, moduleName);

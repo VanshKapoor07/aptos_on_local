@@ -1,5 +1,5 @@
 address 0x4d13cf1bee31d1a31d0f783c48ac3979cc643fd8b169fd735ee57160a9c717a7 {
-    module c1 {
+    module c {
 
         use std::signer;
         use aptos_framework::table::{Self, Table};
