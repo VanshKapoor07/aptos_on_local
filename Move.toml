@@ -1,6 +1,6 @@
 [package]
 name = "c1"
-version = "18.0.0"
+version = "17.0.0"
 
 [addresses]
 c1 = "0xd33a06389a397bcf7635a916ecd873765119d882fc8116f352c09717d3f32ef5"
