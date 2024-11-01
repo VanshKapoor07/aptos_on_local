@@ -72,8 +72,8 @@ async function getModuleInfo(moduleAddress, moduleName) {
         // Save the data as a JSON file
         const outputFilePath = './module_info.json';
         fs.writeFileSync(outputFilePath, JSON.stringify(outputData, null, 2), 'utf-8');
-        console.log("Module information saved to ${outputFilePath}");
-
+        console.log(`Module information saved to ${outputFilePath}`);
+        
     } catch (error) {
         console.error("Error fetching module info:", error);
     }
