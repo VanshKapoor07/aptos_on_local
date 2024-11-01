@@ -23,7 +23,8 @@ compiled_package_info:
     full_model_generation: false
     install_dir: ~
     force_recompilation: false
-    additional_named_addresses: {}
+    additional_named_addresses:
+      c1: 4d13cf1bee31d1a31d0f783c48ac3979cc643fd8b169fd735ee57160a9c717a7
     architecture: ~
     fetch_deps_only: false
     skip_fetch_latest_git_deps: false
