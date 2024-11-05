@@ -1,6 +1,6 @@
 {
   "moduleAddress": "0x4d13cf1bee31d1a31d0f783c48ac3979cc643fd8b169fd735ee57160a9c717a7",
-  "moduleName": "c",
+  "moduleName": "contract",
   "availableFunctions": [
     {
       "name": "0",
@@ -14,319 +14,39 @@
     {
       "name": "1",
       "visibility": "public",
-      "is_entry": false,
+      "is_entry": true,
       "generic_type_params": 0,
       "parameters": [
-        "address",
-        "address"
+        "&signer"
       ]
     },
     {
       "name": "2",
       "visibility": "public",
-      "is_entry": false,
-      "generic_type_params": 0,
-      "parameters": [
-        "address"
-      ]
-    },
-    {
-      "name": "3",
-      "visibility": "public",
       "is_entry": true,
       "generic_type_params": 0,
       "parameters": [
         "&signer",
-        "u64"
-      ]
-    },
-    {
-      "name": "4",
-      "visibility": "public",
-      "is_entry": true,
-      "generic_type_params": 0,
-      "parameters": [
-        "&signer",
-        "address",
-        "u64"
-      ]
-    },
-    {
-      "name": "5",
-      "visibility": "public",
-      "is_entry": false,
-      "generic_type_params": 0,
-      "parameters": [
-        "address"
-      ]
-    },
-    {
-      "name": "6",
-      "visibility": "public",
-      "is_entry": true,
-      "generic_type_params": 0,
-      "parameters": [
-        "&signer",
-        "u64"
-      ]
-    },
-    {
-      "name": "7",
-      "visibility": "public",
-      "is_entry": true,
-      "generic_type_params": 0,
-      "parameters": [
-        "&signer"
-      ]
-    },
-    {
-      "name": "8",
-      "visibility": "public",
-      "is_entry": true,
-      "generic_type_params": 0,
-      "parameters": [
-        "&signer"
+        "0x1::string::String"
       ]
     }
   ],
   "resourceStructures": [
     {
-      "name": "InvestmentData",
-      "fields": [
-        {
-          "name": "version",
-          "type": "u64"
-        },
-        {
-          "name": "startup_address",
-          "type": "address"
-        },
-        {
-          "name": "target_amount",
-          "type": "u64"
-        },
-        {
-          "name": "total_investment",
-          "type": "u64"
-        },
-        {
-          "name": "is_active",
-          "type": "bool"
-        },
-        {
-          "name": "investments",
-          "type": "0x1::table::Table<address, u64>"
-        },
-        {
-          "name": "investors",
-          "type": "vector<address>"
-        }
-      ]
-    },
-    {
-      "name": "MessageChangeEvent",
-      "fields": [
-        {
-          "name": "from_message",
-          "type": "0x1::string::String"
-        },
-        {
-          "name": "to_message",
-          "type": "0x1::string::String"
-        }
-      ]
-    },
-    {
-      "name": "MessageHolder",
+      "name": "HelloMessage",
       "fields": [
         {
           "name": "message",
           "type": "0x1::string::String"
-        },
-        {
-          "name": "message_change_events",
-          "type": "0x1::event::EventHandle<0x4d13cf1bee31d1a31d0f783c48ac3979cc643fd8b169fd735ee57160a9c717a7::c::MessageChangeEvent>"
         }
       ]
     }
   ],
   "moduleResources": [
     {
-      "type": "0x1::account::Account",
+      "type": "0x4d13cf1bee31d1a31d0f783c48ac3979cc643fd8b169fd735ee57160a9c717a7::contract::HelloMessage",
       "data": {
-        "authentication_key": "0x4d13cf1bee31d1a31d0f783c48ac3979cc643fd8b169fd735ee57160a9c717a7",
-        "coin_register_events": {
-          "counter": "1",
-          "guid": {
-            "id": {
-              "addr": "0x4d13cf1bee31d1a31d0f783c48ac3979cc643fd8b169fd735ee57160a9c717a7",
-              "creation_num": "0"
-            }
-          }
-        },
-        "guid_creation_num": "4",
-        "key_rotation_events": {
-          "counter": "0",
-          "guid": {
-            "id": {
-              "addr": "0x4d13cf1bee31d1a31d0f783c48ac3979cc643fd8b169fd735ee57160a9c717a7",
-              "creation_num": "1"
-            }
-          }
-        },
-        "rotation_capability_offer": {
-          "for": {
-            "vec": []
-          }
-        },
-        "sequence_number": "5",
-        "signer_capability_offer": {
-          "for": {
-            "vec": []
-          }
-        }
-      }
-    },
-    {
-      "type": "0x1::code::PackageRegistry",
-      "data": {
-        "packages": [
-          {
-            "deps": [
-              {
-                "account": "0x1",
-                "package_name": "AptosFramework"
-              },
-              {
-                "account": "0x1",
-                "package_name": "AptosStdlib"
-              },
-              {
-                "account": "0x1",
-                "package_name": "MoveStdlib"
-              }
-            ],
-            "extension": {
-              "vec": []
-            },
-            "manifest": "0x1f8b08000000000002ff458ec16e83300c86ef48bc03e2bc414c80249376d8652f51ed90384e8b3a084a289b34eddd97acad7ab1fcdb9f7fff8755e3591fe9a32c163d53f55ad5087559ec14e2e497ac4134ac61695616076d6da01829261e216fd9776f81a30343c4c1824e85392139f652235742218e3d77561a1895b3820f44838091698502841657674b2b2d96169cfecddfd6cdc7f790227df9704e8f7eaae3b4e587a76d5be34bdb2679ba9806fddcea0c3f7f6a136f2dfa404d02eaa72a5e8c9d423ebcae66bf53ebeec637fea1d345a03de30aa449c1514927c148d3196e2dd78312bc531d30c307e4a9d6d5ef1f9788e08545010000",
-            "modules": [
-              {
-                "extension": {
-                  "vec": []
-                },
-                "name": "c1",
-                "source": "0x1f8b08000000000002ffdd59614fe34610fd5ea9ff61b94ad4a6d6913440c001a414428944b90a72aadaaab236f63ab170bca9bd4e8e9ef8ef9d5ddb89bdbb4e9ce3ee3e5c74ba80fd767676e6cdccb3c19e17932441ad0f475ebbe3faed31219db6d7c6f05fcbef9e76dca353ec76ceba67ae7b72d4f1bdd371fbe4ccf7ba9d63428ebbed93163e73bbed2eeea28fdf7f87e033a35e1a12e4b6f985ec12ffa4094109f36c3b092611897bd53b78ce68e2f8319e91258d9f6c9be171486cfbe323097d0b8df86f2fdbd6b83488b661b20bd875691ab166608d5971900571198d7577121607d164abf5664e900511a035cca551c2d0c0b97f377286f7c3d1b07f37fc6b706da3f4e4085da0764f85f6ef1e06fdeb3f75f09f35f0e1fde3fb9b9be1d570703f727ee9dff5efaf0605bea3c18ffa0fbf0e46c221d8e7ea766dfda8a7f7bbff7e74fbeea1ecc771e58c10c2d46568182d48c26610816bcc309ae2043d91e7826ac56741e224a091b064556f250cc72c9d3b38e3b98df21f2418a026843978c633a2b3c328c3a113acdcd161024e2c162c888dc69486f2ddd55af04210fabcf085dbbad4c2690ce08c6805ba0c7cd184ec37c0e009b9a5a147e2ba88cd32908d32aadaf6a3f8b6b428c79de208be0413c11ff16ddb03fe758b230f4e926f7a2580e24643374b2b84af5e4ce716e20727b2cf7e4c674e33c7196d00ac787578886ed208b24723580dd10f5880c3e03f82d894148158c3e7e9380c5c045ec7cfc84f2394e067674ac2901a7959db683feb74a67c8e9030c142e07c86805690a5d6a17eb1dcec551749e4f091b1473e04094bce2bf9be34b82953d9b3d8779ab1e242628906ad6549cafc5363fce6961f14fd41e3d0db7b635a1b17cbe429c2634764995d74a6b51c5a4543b3c74b4fbd36a30be2b0550eacfcbc72305fea49d0f73ce28193ffa6016404e12882c217acf0695c8dda7add0f7f2f02b2fc47a10727066f2b7928446e561dc894a9b9de75637270929098ed191bd26fa1b6d9e3a719c431780d6ca95af42849a21f191226aad60ff6c714162d9d4948c738d49a7fab9443258a4a6dac8bc9c8dbf1aa382c4de7d5168cd4c7f5b59383e47417112b2aa63a542e0dc936844f3b30cdca802ad32d3760c9e34a5356ab51d5d6505a724483a8444b775f19532d0daa34a8a019131da23cac722d06056b98b5d8d2a402cd329bb36705fc524ecc36ca709b4661bac497da818e2a145ad5d2e694706a159b6ce65681aa23d70edc9274dbe656bff6901b753c7e880b5429526796b2ad1bd7b82d997ebba286a595756a0d4097f99dc4d01c67625272b10ca4c251e2973b6486d42a76d0fa39fcbccfef5fc1b5cb55b895841779960f747828da0489a04f09c9ee6422e202d5ecba0cd8d48bf1f27cadf26d5beb81ba211c5a04516fd923739a04acceb062a6beec37efb3f3092a86e5000a4d91973a287586832831f6157eac1b83a5548e5e77e4360163ec0353d14e26ebd29df5d2acdbccd364ea8cb1fbb4c93ef4278dc3b23040244c489d785aaf162e01b5f2a3e5d5089b7fc20975273b50b7522efd9447463e8252a1b237f28c00e35b21a5cd54d66c5d7da9d9a13cc8b4b4a9ed4ce0af8f214d9a83371b2e45dd2c1539b2d3dc788d24f9425d7dd79835a046ab2eac9b442fecbb167d9e21cf6a337b4096835a33428b454dd30b60c2344a933f70e8d4e6574af9e7110a5f551c28c755eb5899cef2eb1d737b3f2ae704dc57f2f43ad26eab0bae80151fdd90e0b8643369d0d8370f1ff353ea88c740b268d40960282a83bf93122fa6447d35a6f6e7d7b00d88b92b298d8dbcb1b6d2c2aa6781f9aad4d032518cfae71379f09733c75f817e4bc9e2b2e04b68c9838ae2dad56453b1d76af6ba88d3406d14954767d113742f7bcb4fcd0224bde4d5be0489d2d98a737cf814023824d1844d0d6daf592558d31697d300fe526304e8bc6adadca6804b7be799288b6c9da2cdf31613fecec4a8a4e9a0eed15a1089ab53909fed0d6aafa298cb71c95f43543b6ffe05fffe071f471fb0fc1a0000",
-                "source_map": "0x"
-              }
-            ],
-            "name": "c1",
-            "source_digest": "B9B6D6AB1701B60580F51F304F722625EBDFF9DA46CF7659B8FC77E1081699DA",
-            "upgrade_number": "2",
-            "upgrade_policy": {
-              "policy": 1
-            }
-          },
-          {
-            "deps": [
-              {
-                "account": "0x1",
-                "package_name": "AptosFramework"
-              },
-              {
-                "account": "0x1",
-                "package_name": "AptosStdlib"
-              },
-              {
-                "account": "0x1",
-                "package_name": "MoveStdlib"
-              }
-            ],
-            "extension": {
-              "vec": []
-            },
-            "manifest": "0x1f8b08000000000002ff458ec16e83300c86ef48bc03e2bc414280249376d8652f51ed90d84e8b3a084a289b34eddd97acad7ab1fcdb9f7fff87d5c0d91ce9a32c163353f55ad5d0d565b15388935fb2e6aa610d4bb3b23818c44031524c3c7479cbbe7be4021cb744822337a9302795805e19105a6a80b1170e95e5a37628c54034483e32a3417269e4d51969a5056981e9dffc6ddd7c7c0f29d2970fe7f4e8a73a4e5b7e78dab635beb46d92a78b6dc0cfadc9f0f3a7b1f1d6820fd424a07eaae2c5e214f2e17535fb9d5a7737bef10f9d2e02ed19d75cd9141cb4728a5b653b2b108519b4149dee38b36200916a5dfdfe01225c04c545010000",
-            "modules": [
-              {
-                "extension": {
-                  "vec": []
-                },
-                "name": "c2",
-                "source": "0x1f8b08000000000002ffdd59614fe34610fd5ea9ff61b94ad4a6d6915c80800348298412897215e454b555656dec7562e178537b9d1c3df1df3bbbb6137b779d38c7dd7d6874ba80fd767676e6cdccb3c19e17932441ad8f475ebbe3faed31219db6d7c6f05fcbef9e76dca353ec76ceba67ae7b72d4f1bdd371fbe4ccf7ba9d63428ebbed93163e73bbed2eeea24fdf7f87e033a35e1a12e4bee317b24bfc93260425ccb3ed24984424ee55efe039a389e3c7784696347eb26d86c721b1ed4f8f24f42d34e2bfbd6c5be3d220da86c92e60d7a569c49a813566c54116c46534d6dd49581c4493add69b3941164480d6309746094303e7fefdc819de0f47c3feddf0cfc1b58dd293237481da3d15dabf7b18f4afffd0c1df69e0c3fbc70f3737c3abe1e07ee4fcdcbfebdf5f0d0a7c47831ff51f7e198c8443b0cfd5eddafa514fef77ffc3e8f6fd43d98fe3ca192184a9cbd0305a9084cd2002d7986134c5097a22cf05d58acf82c449402361c9aade4a188e593a7770c6731be53f4830404d0873f08c674467875186432758b9a3c3049c582c58101b8d290de5bbabb5e08520f479e10bb775a985d318c019d10a7419f8a209d9af80c113724b438fc475119b65201b6554b5ed47f16d69518e3bc5117c0926823fe2dbb607fceb16471e9c24dff44a00c58d866e9656085fbd98ce2dc40f4e649ffd98ce9c668e33da0058f1eaf010dda411648f46b01aa21fb00087c1bf04b1292902b186cfd37118b808bc8e9f919f4628c1cfce94842135f2b2b6d17ed6e94cf91c21618285c0f90c01ad204bad43fd62b9d9ab2e92c8e123638f7c0c12969c57f27d697053a6b267b1ef3463c585c4120d5acb9294f9a7c6f8cd2d3f28fa9dc6a1b7f7c6b4362e96c95384c78ec832bbe84c6b39b48a86668f979e7a6d4617c461ab1c58f979e560bed493a0ef79c40327ff4903c808c25104852f58e1d3b81ab5f5ba1ffe5a0464f9b7420f4e0cde56f25088dcac3a90295373bdebc6e4e0242131db3336a4df426db3c74f338863f01ad852b5e85192443f32244c54ad1fec8f292c5a3a93908e71a835ff5629874a1495da58179391b7e35571589aceab2d18a98feb6b2707c9e92e2256544c75a85c1a926d089f76609a950155a65b6ec092c795a6ac56a3aaada1b4e48806518996eebe32a65a1a5469504133263a447958e55a0c0ad6306bb1a549059a653667cf0af8a59c986d94e1368dc274892fb5031d5528b4aaa5cd29e1d42a36d9ccad025547ae1db825e9b6cdad7eed2137ea78fc1017a852a4ce2c655b37ae715b32fd76450d4b2bebd41a802ef31b89a139cec4a4e462194885a3c42f77c80ca955eca0f573f8799fdfbf826b97ab702b092ff22c1fe8f050b40912419f1292ddc944c405aad97519b0a917e3e5f95ae5dbb6d603754338b408a2deb247e63409589d61c54c7dd96fde67e713540ccb01149a222f7550ea0c075162ec2bfc5837064ba91cbdeec86d02c6d807a6a29d4cd6a53beba559b799a7c9d41963f769937de84f1a876561804898903af1b45e2d5c026ae547cbab1136ff8c13ea4e76a06ea55cfa298f8c7c04a542656fe41901c6b7424a9ba9acd9bafa52b3437990696953db99c05f1f439a34076f365c8aba592a7264a7b9f11a49f295bafaae316b408d565d5837895ed8772dfa3c439ed566f6802c07b56684168b9aa617c0846994267fe0d0a9cd6f94f22f2314bea938508eabd6b1329de5d73be6f67e54ce09b8afe4e975a4dd56175c012b3eba21c171c966d2a0b16f1e3ee6e7d4118f8164d1a813c05054067f27255e4c89fa6a4ced2faf611b107357521a1b79636da58555cf02f355a9a165a218f5cf27f2e02f678ebf02fd3f258bcb82afa1250f2a8a6b57934dc55eabd9eb224e03b551541e9d454fd0bdec2d3f350b90f49257fb12244a672bcef1e15308e09044133635b4bd6695604d5b5c4e03f84b8d11a0f3aa69739b022eed9d67a22cb2758a36cf5b4cf83b13a392a683ba476b4124ae4e417eb637a8bd8a622ec7257f0d51edbcf917fcfb0fd7a0bfadfc1a0000",
-                "source_map": "0x"
-              }
-            ],
-            "name": "c2",
-            "source_digest": "DD7EE825186D4803FDC618DD54A50A2482FCFF0BF2CCCF663476124A539D9369",
-            "upgrade_number": "0",
-            "upgrade_policy": {
-              "policy": 1
-            }
-          },
-          {
-            "deps": [
-              {
-                "account": "0x1",
-                "package_name": "AptosFramework"
-              },
-              {
-                "account": "0x1",
-                "package_name": "AptosStdlib"
-              },
-              {
-                "account": "0x1",
-                "package_name": "MoveStdlib"
-              }
-            ],
-            "extension": {
-              "vec": []
-            },
-            "manifest": "0x1f8b08000000000002ff458ec16e83300c86ef48bc03e2bc414280249376d8652f51ed90d84e8b3a084a289b34eddd97acad7ab1fcdb9f7fff87d5c0d91ce9a32c163353f55ad55097c54e214e7ec99237ac6169541607831828468a8986bc63df3d72018e5b22c1919b5498934a40af0c082d35c0d80b87caf2513b9462201a241f99d120b934f26a8cb4d282b4c0f4effdb66e3ebe8794e7cb87737af4531da72d3f3c6ddb1a5fda36c9d3c536e0e7d664f8f9d3d8786bc1076a12503f55f162710af9f0ba9afd4eadbb1bdff8874e1781f68c6bae6c0a0e5a39c5adb29d1588c20c5a8a4e779c59318048b5ae7eff00a43d0c7242010000",
-            "modules": [
-              {
-                "extension": {
-                  "vec": []
-                },
-                "name": "c",
-                "source": "0x1f8b08000000000002ffdd596d4fe34610fe5ea9ff61b94ad4a6d6913440c001a414428944b90a72aadaaab236f63ab170bca9bd4e8e9ef8ef9d5ddb89bdbb4e9ce3ee3e5c8430b16767e7e59999c70bf6bc9824096a7d38f2da1dd76f8f09e9b4bd36865f2dbf7bda718f4eb1db39eb9eb9eec951c7f74ec7ed9333dfeb768e0939eeb64f5af8ccedb6bbb88b3e7eff1d82cf8c7a694890cbbf6777f8274d084a9867db49308948dcab3ec1734613c78ff18c2c69fc64db0c8f4362db1f1f49e85b68c4bfbd6c5be3d220da2693ddc0ae4bd3883513d6a8158e2c88cb68ac7b92b03888265bb53733822c88105a8bb9344a181a38f7ef46cef07e381af6ef867f0dae6d949e1ca10bd4eea9a2fdbb8741fffa4f9df8cf1af1e1fde3fb9b9be1d570703f727ee9dff5efaf06857c47233fea3ffc3a180983609fabdbb5f6a39edeeefefbd1edbb87b21dc7151f2184a9cbd0305a9084cd2002d7986134c5097a22cf05d28acf82c4494023a1c9aa3e4a188e593a777006731be57f4862203521ccc1339e119d1e46190e9d60658e4e26e0c062c182d8684c69283f5dad052b04a0cf0b5bb8ae4bad388d4138035a215d167cd184ec3790c113724b438fc475119b654236caa06adb8fe26a69a51c778a23b80824823de26adb037eb9c591079ee49b5e0941f1a0a199a515c2562fa6730b71c7896cb31fd399d3cc70461b0856ac3a3c44376904d9a311ac86e8072cc061f01f416c4a8a40acc5e7e9380c5c0456c7cfc84f2394e067674ac2901a7959db683feb74a6ec4748984021603e93805690a5d6a17eb1dcec551749e0f091b1473e04094bce2bf9be34b82a53d9b3d8779aa1e2424289465a8b9294f9a7c6f8cd2d7714fd41e3d0db7b635a1b17cbe029c263476499dd74a6b5185a4543b3c74b4fbd37a30be2b0550eacdc5f39982ff520e87b1ef1c0c87fd3003282701441e10b54f834ae466dbdee87bf170159fea3c0830383b7953c142237ab0e64cad05cefba3139384948ccf68c0de9b750dbec716f06710c56035aaa1a3d4a92e84786848aaaf683fd3185454b6712d2310eb5eadf2ae55089a2521beb6232f276bc2a0e4bd379b50523f5717dede44272ba8b881515531d2a9786a41bc2a71d9866654095e1962bb0e471a529abd5a86a6b202d19a291a8444bf75c19532d8d5469504133263a89f2b0cab91814ac61d6ca9626157096d99c3d2bc22fe5c46c830cd76914aa4b78a91de8a802a1552d6d4e098756b1c9666c155275e0da015b126fdbdcead71672a58ec79db8409522756629dbba718dd992eab72b68585a5aa7d6007499df490ccd7126262527cb002a1c257eb94366925ac60e5c3f173feff3e75770ef72156e25e1459e65870e0f459b2011f42941d99d8c445ca09a5d97019b7a315e9eaf59be6d6b2d503704a74510f59a3d32a749c0ea142b6aeacb7ef33e3b7b50512c0750708abcd481a9331c4489b1afe063dd182ca572f4bc23d70932c63e2015eda4b22edd592fcdbacd3c4da6ce18bb4f9bf4437fd2182c130344c284d491a7f56a6112402b772daf46d8fc133cd47976a06ea5dcfa298f8cec8252a1b235f28c00e55b454a9ba9a8d9bafa52b3437990696153db99c05e1f439a348e371b2e45dd2c153ab2d3dc780d25f9425d7dd798358046ab2eac9b482fecbb267d9e21cf6a337b4196835a33428b454dd30bc2846998267fe1d0b1cdaf94f2cf4314be2a3950dc55eb5899cef2f18eb9bd1f957302e62b797a1d68b7d50567c08a8d6e48705cd2993468ec9b878ff92975c463206934ea08301495c1cfa4c4c194a8afc6d0fefc1cb601307705a5b11137d6565858f528305f951a5a068a51ff7e220ffe72e6f811e8b7942c4e0bbe04973ca830ae5d5536257bad66c7451c066aa3a8bc3a8b9ea03bec2dbf350b21e990577b0812a5b315e6f8f029087048a2099b1ada5eb34ab0a62d2ea701fca3c608d07955b5b98d0197f6ce335126d93a469be72d26fcccc4a8a4e9a0eed55a0089b353a09fed0d6cafc298cb71c98f21aa9d37bfc0cfff296a9ad8fb1a0000",
-                "source_map": "0x"
-              }
-            ],
-            "name": "c",
-            "source_digest": "5DABC5E8728A00A3BBAD5992BEACA963296820A8E22E842464185082B3C47A95",
-            "upgrade_number": "0",
-            "upgrade_policy": {
-              "policy": 1
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>",
-      "data": {
-        "coin": {
-          "value": "99335100"
-        },
-        "deposit_events": {
-          "counter": "1",
-          "guid": {
-            "id": {
-              "addr": "0x4d13cf1bee31d1a31d0f783c48ac3979cc643fd8b169fd735ee57160a9c717a7",
-              "creation_num": "2"
-            }
-          }
-        },
-        "frozen": false,
-        "withdraw_events": {
-          "counter": "0",
-          "guid": {
-            "id": {
-              "addr": "0x4d13cf1bee31d1a31d0f783c48ac3979cc643fd8b169fd735ee57160a9c717a7",
-              "creation_num": "3"
-            }
-          }
-        }
+        "message": "changed_message"
       }
     }
   ]
