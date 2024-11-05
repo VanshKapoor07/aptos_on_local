@@ -79,7 +79,10 @@ async function getModuleInfo(moduleAddress, moduleName) {
     }
 }
 
-const moduleAddress = '0x4d13cf1bee31d1a31d0f783c48ac3979cc643fd8b169fd735ee57160a9c717a7'; // Replace with your contract address
+//const moduleAddress = '0x4d13cf1bee31d1a31d0f783c48ac3979cc643fd8b169fd735ee57160a9c717a7'; // Replace with your contract address
+const moduleAddress = process.env.ACCOUNT_ADDR || 'Failed to fetch address value into get_abi.js';     //if error, comment this line and uncomment the line just above this
+console.log("Value for account address fetched into get_abi.js is--> ");
+console.log(moduleAddress)
 const moduleName = 'c'; // Replace with your module name
 
 getModuleInfo(moduleAddress, moduleName);
